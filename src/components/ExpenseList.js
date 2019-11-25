@@ -1,14 +1,22 @@
 import React from 'react';
 import Item from './ExpenseItem';
+import {MdDeleteForever} from 'react-icons/md'
 
 
 
-const ExpenseList = () => {
+const ExpenseList = ({expenses}) => {
     return (
-        <div>
-            Hello from ExpenseList.js
-            <Item />
-        </div>
+        <>
+            <ul className="list">
+                {expenses.map((expense)=>{
+                    return <Item key={expense.id} expense={expense} />;
+                })}
+            </ul>
+            {expenses.length > 0 && (
+            <button className="btn" >Clear Expenses <MdDeleteForever className="btn-icon" />
+            </button>
+            )}
+        </>
     )
 }
 
