@@ -63,6 +63,23 @@ function App() {
       handleAlert({type: "danger", text: "Fill the category section and Insert amount with value > 0"}); 
     }
   };
+  //Clear every items
+
+  const clearItems = () =>{
+    setTimeout(()=>{
+      setExpenses([]);
+    }, 600)
+  }
+
+  //Delete single item
+
+  const handleDelete = (id)=> {
+
+  }
+
+  const handleEdit = (id)=> {
+    
+  }
 
   return (
     <>
@@ -77,7 +94,7 @@ function App() {
         handleCharge={handleCharge} 
         handleSubmit={handleSubmit} /
         >
-        <ExpenseList expenses={expenses} />
+        <ExpenseList expenses={expenses} handleDelete={handleDelete} handleEdit={handleEdit} clearItems={clearItems}/>
       </main>
       <h1>
         Total Spending: <span className="total">
