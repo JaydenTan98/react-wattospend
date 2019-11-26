@@ -69,12 +69,15 @@ function App() {
     setTimeout(()=>{
       setExpenses([]);
     }, 600)
+    handleAlert({type:"danger", text:"All Expenses Deleted"})
   }
 
   //Delete single item
 
   const handleDelete = (id)=> {
-
+    let temp = expenses.filter(item => item.id !== id);
+    setExpenses(temp);
+    handleAlert({type:"danger", text:"Expense Deleted"})
   }
 
   const handleEdit = (id)=> {
