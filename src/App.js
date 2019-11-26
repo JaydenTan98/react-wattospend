@@ -1,26 +1,32 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import './App.css';
 import ExpenseList from './components/ExpenseList';
 import ExpenseForm from './components/ExpenseForm';
 import Alert from './components/Alert';
 import uuid from 'uuid/v4'
 
-const initialExpenses = [{ 
-  id: uuid(),
-  charge: "rent",
-  amount: 1200
-  },
-  {
-    id: uuid(),
-    charge: "car",
-    amount: 1200
-  },
-  {
-    id: uuid(),
-    charge: "mom",
-    amount: 300
-  }
-];
+// const initialExpenses = [{ 
+//   id: uuid(),
+//   charge: "rent",
+//   amount: 1200
+//   },
+//   {
+//     id: uuid(),
+//     charge: "car",
+//     amount: 1200
+//   },
+//   {
+//     id: uuid(),
+//     charge: "mom",
+//     amount: 300
+//   }
+// ];
+
+//local storage api
+const initialExpenses = localStorage.getItem("expenses")
+  ? JSON.parse(localStorage.getItem("expenses"))
+  :[];
+
 
 
 function App() {
@@ -36,6 +42,10 @@ function App() {
   const [edit, setEdit] = useState(false);
 
   const [id, setId] = useState(0);
+  
+  useEffect(()=>{
+    localStorage.setItem("expenses", JSON.stringify(expenses));
+  }, [expenses])
 
   //functions to handle
   const handleCharge = e =>{
